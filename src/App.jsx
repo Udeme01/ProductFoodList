@@ -8,7 +8,7 @@ const App = () => {
       <Header />
       <Desserts />
       <section>
-        <Cart title={`Your Cart (${0})`} />
+        <Cart title={`Your Cart (${7})`} />
       </section>
     </main>
   );

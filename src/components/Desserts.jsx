@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import addToCart from "../../public/assets/images/icon-add-to-cart.svg";
+import addToCart from "/assets/images/icon-add-to-cart.svg";
 
 const Desserts = () => {
   const [dessertLists, setDessertLists] = useState([]);
