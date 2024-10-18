@@ -10,6 +10,8 @@ export default {
       red: "hsl(14, 86%, 42%)",
       green: "hsl(159, 69%, 38%)",
 
+      white: "hsl(0, 100%, 100%)",
+
       rose50: "hsl(20, 50%, 98%)",
       rose100: "hsl(13, 31%, 94%)",
       rose300: "hsl(14, 25%, 72%)",
