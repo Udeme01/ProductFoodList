@@ -11,7 +11,7 @@ const Desserts = () => {
       try {
         setIsFetching(true);
 
-        const response = await fetch("/public/data.json");
+        const response = await fetch("data.json");
         const resData = await response.json();
         // console.log(resData);
 
