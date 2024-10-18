@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 // import emptyCartImg from "../assets/images/illustration-empty-cart.svg";
-import removeItemIcon from "../assets/images/icon-remove-item.svg";
+import removeItemIcon from "../../public/assets/images/icon-remove-item.svg";
 
 const Cart = ({ title }) => {
   return (
