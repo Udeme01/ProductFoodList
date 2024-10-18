@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import addToCart from "/assets/images/icon-add-to-cart.svg";
 
+import Header from "../components/Header";
+import Cart from "./Cart";
+
 const Desserts = () => {
   const [dessertLists, setDessertLists] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -37,21 +40,24 @@ const Desserts = () => {
   }, []);
 
   return (
-    <main className="font-redHat text-rose900">
+    <main className="lg:flex lg:gap-6 xl:w-[80%] xl:mx-auto">
       <section>
+        <Header />
+
         {isFetching && <p>Fetching desserts lists...</p>}
+
         {!isFetching && !error && (
-          <ul>
+          <ul className="grid sm:grid-cols-2 sm:gap-6 md:grid-cols-3 font-redHat lg:w-full">
             {dessertLists.map((dessert) => {
               return (
-                <li key={dessert.name} className="mt-8">
+                <li key={dessert.name} className="">
                   <div className="relative flex flex-col">
                     <img
                       src={dessert.image.mobile}
                       alt="Waffle with Berries"
                       className="rounded-md"
                     />
-                    <button className="absolute -bottom-5 font-redHat600 text-rose900 text-sm bg-rose50 flex self-center justify-self-center px-6 py-[10px] border border-rose300 rounded-full">
+                    <button className="absolute -bottom-5 font-redHat600 text-rose900 text-sm bg-rose50 flex self-center justify-self-center px-6 py-[10px] border border-rose300 rounded-full lg:px-4 lg:py-[8px]">
                       <img
                         src={addToCart}
                         alt="icon-add-to-cart"
@@ -75,6 +81,7 @@ const Desserts = () => {
           </ul>
         )}
       </section>
+      <Cart title={`Your Cart (${0})`} />
     </main>
   );
 };

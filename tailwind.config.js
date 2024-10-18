@@ -2,10 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      xs: "375px",
-      xl: "1440px",
-    },
+    // screens: {
+    //   xs: "375px",
+    //   xl: "1440px",
+    // },
     colors: {
       red: "hsl(14, 86%, 42%)",
       green: "hsl(159, 69%, 38%)",
