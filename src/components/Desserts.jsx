@@ -11,9 +11,9 @@ const Desserts = () => {
       try {
         setIsFetching(true);
 
-        const response = await fetch("/data.json");
+        const response = await fetch("/public/data.json");
         const resData = await response.json();
-        console.log(resData);
+        // console.log(resData);
 
         if (!response.ok) {
           throw new Error("Failed to fetch desserts");
@@ -43,7 +43,6 @@ const Desserts = () => {
         {!isFetching && !error && (
           <ul>
             {dessertLists.map((dessert) => {
-              // console.log(dessert);
               return (
                 <li key={dessert.name} className="mt-8">
                   <div className="relative flex flex-col">
