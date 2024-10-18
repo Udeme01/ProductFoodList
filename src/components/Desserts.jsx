@@ -11,8 +11,9 @@ const Desserts = () => {
       try {
         setIsFetching(true);
 
-        const response = await fetch("http://localhost:5173/data.json");
+        const response = await fetch("/data.json");
         const resData = await response.json();
+        console.log(resData);
 
         if (!response.ok) {
           throw new Error("Failed to fetch desserts");
