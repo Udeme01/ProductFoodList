@@ -35,6 +35,7 @@ const Cart = ({ title }) => {
           <div>
             <img
               src={removeItemIcon}
+              alt="remove item icon"
               className="border-2 p-1 rounded-full border-rose400"
             />
           </div>
@@ -96,14 +97,14 @@ const Cart = ({ title }) => {
 
       {/* carbon neutral */}
       <div className="flex items-center justify-center gap-2 bg-rose50 p-4 rounded-md">
-        <img src={carbonNeutralIcon} />
-        <p>
+        <img src={carbonNeutralIcon} alt="carbon neutral icon" />
+        <p className="text-sm">
           This is a <span className="font-redHat700">carbon-neutral </span>
           delivery
         </p>
       </div>
 
-      <button className="text-rose50 bg-red rounded-full py-4">
+      <button className="text-rose50 bg-red rounded-full py-4 font-redHat600 text-lg">
         Confirm Order
       </button>
     </section>
