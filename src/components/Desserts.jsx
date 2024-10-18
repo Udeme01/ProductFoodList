@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import waffleImg from "../assets/images/image-waffle-mobile.jpg";
 import addToCart from "../assets/images/icon-add-to-cart.svg";
-
-// import { fetchDesserts } from "../http";
 
 const Desserts = () => {
   const [dessertLists, setDessertLists] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchDesserts = async () => {
@@ -21,7 +18,6 @@ const Desserts = () => {
           throw new Error("Failed to fetch desserts");
         }
 
-        console.log(resData);
         setDessertLists(resData);
         setIsFetching(false);
       } catch (error) {
@@ -40,35 +36,44 @@ const Desserts = () => {
   }, []);
 
   return (
-    <main className="font-redHat text-rose900 m-6">
-      <h1 className="font-redHat700 text-4xl my-8">Desserts</h1>
-
+    <main className="font-redHat text-rose900">
       <section>
-        <ul>
-          {isFetching && <p>Fetching desserts lists...</p>}
-          {!isFetching && (
-            <li>
-              <div className="relative flex flex-col">
-                <img src={waffleImg} alt="Waffle with Berries" />
-                <button className="absolute -bottom-5 font-redHat600 text-rose900 text-sm bg-rose50 flex self-center justify-self-center px-6 py-[10px] border border-rose300 rounded-full">
-                  <img
-                    src={addToCart}
-                    alt="icon-add-to-cart"
-                    className="mr-2"
-                  />
-                  Add to Cart
-                </button>
-              </div>
-              <div className="leading-7 mt-6">
-                <p className="text-rose400">Waffle</p>
-                <h3 className="text-rose900 font-redHat600">
-                  Waffle with Berries
-                </h3>
-                <p className="text-red font-redHat600">$6.50</p>
-              </div>
-            </li>
-          )}
-        </ul>
+        {isFetching && <p>Fetching desserts lists...</p>}
+        {!isFetching && !error && (
+          <ul>
+            {dessertLists.map((dessert) => {
+              // console.log(dessert);
+              return (
+                <li key={dessert.name} className="mt-8">
+                  <div className="relative flex flex-col">
+                    <img
+                      src={dessert.image.mobile}
+                      alt="Waffle with Berries"
+                      className="rounded-md"
+                    />
+                    <button className="absolute -bottom-5 font-redHat600 text-rose900 text-sm bg-rose50 flex self-center justify-self-center px-6 py-[10px] border border-rose300 rounded-full">
+                      <img
+                        src={addToCart}
+                        alt="icon-add-to-cart"
+                        className="mr-2"
+                      />
+                      Add to Cart
+                    </button>
+                  </div>
+                  <div className="leading-7 mt-6">
+                    <p className="text-rose400">{dessert.category}</p>
+                    <h3 className="text-rose900 font-redHat600">
+                      {dessert.name}
+                    </h3>
+                    <p className="text-red font-redHat600">
+                      ${dessert.price.toFixed(2)}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </section>
     </main>
   );
