@@ -1,38 +1,3 @@
-import { useRef } from "react";
-
-import PropTypes from "prop-types";
-// import emptyCartImg from "/assets/images/illustration-empty-cart.svg";
-import removeItemIcon from "/assets/images/icon-remove-item.svg";
-import carbonNeutralIcon from "/assets/images/icon-carbon-neutral.svg";
-
-import OrderConfirmModal from "./OrderConfirmModal";
-import Button from "./Button";
-
-const Cart = ({ title }) => {
-  const modal = useRef();
-
-  const handleOpenOrders = () => {
-    modal.current.open();
-  };
-
-  let modalActions = <Button>Start New Order</Button>;
-
-  return (
-    <section className="bg-white rounded-md p-6 mt-10 flex flex-col gap-8 h-fit lg:w-full lg:mt-0 xl:max-w-md">
-      <OrderConfirmModal
-        ref={modal}
-        title="Order Confirmed"
-        actions={modalActions}
-      />
-      <h1 className="text-red font-redHat700 text-xl">{title}</h1>
-      {/* <section className="gap-4 flex flex-col">
-        <div className="flex flex-col items-center justify-center">
-          <img src={emptyCartImg} />
-        </div>
-        <p className="text-sm text-rose500 text-center font-redHat700">
-          Your added items will appear here
-        </p>
-      </section> */}
 
       <section>
         {/* item 1 */}
@@ -123,13 +88,6 @@ const Cart = ({ title }) => {
         </p>
       </div>
 
-      <Button onClick={handleOpenOrders}>Confirm Order</Button>
-    </section>
-  );
-};
-
-Cart.propTypes = {
-  title: PropTypes.string,
-};
-
-export default Cart;
+      <button className="text-rose50 bg-red rounded-full py-4 font-redHat600 text-lg">
+        Confirm Order
+      </button>
