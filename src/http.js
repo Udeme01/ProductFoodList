@@ -1,5 +1,5 @@
-export const fetchDesserts = async () => {
-  const response = await fetch("http://localhost:5173/data.json");
+export const dessertsData = async () => {
+  const response = await fetch("/data.json");
   const resData = await response.json();
 
   if (!response.ok) {

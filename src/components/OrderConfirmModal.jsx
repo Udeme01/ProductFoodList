@@ -19,7 +19,7 @@ const OrderConfirmModal = forwardRef(function OrderConfirmModal(
   });
 
   return createPortal(
-    <dialog ref={dialog} className="rounded-xl py-8 px-6 w-2/3">
+    <dialog ref={dialog} className="rounded-xl py-8 px-6 bg-white">
       <OrderConfirm title={title} />
       <form method="dialog">{actions}</form>
     </dialog>,

@@ -1,13 +1,14 @@
-import Desserts from "./components/Desserts";
+import ProductList from "./components/ProductList";
 // import Header from "../src/components/Header";
+import { DessertCartContextProvider } from "./components/store/dessert-cart-context";
 
 const App = () => {
   return (
-    <>
+    <DessertCartContextProvider>
       {/* <Header /> */}
 
-      <Desserts />
-    </>
+      <ProductList />
+    </DessertCartContextProvider>
   );
 };
 
