@@ -48,7 +48,7 @@ const ProductItem = ({ dessert }) => {
         </div>
       ) : (
         <button
-          className="relative flex flex-col"
+          className="relative flex flex-col mt-6"
           onClick={() => addItemToCart(name)}
         >
           <img src={mobile} alt="Waffle with Berries" className="rounded-md" />
