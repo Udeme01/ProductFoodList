@@ -8,7 +8,8 @@ import { useContext } from "react";
 import { DessertCartContext } from "./store/dessert-cart-context";
 
 const ProductItem = ({ dessert }) => {
-  const { addItemToCart, dessertItems } = useContext(DessertCartContext);
+  const { addItemToCart, updateCartItemQuantity, dessertItems } =
+    useContext(DessertCartContext);
 
   const {
     name,
@@ -23,11 +24,18 @@ const ProductItem = ({ dessert }) => {
 
   return (
     <li key={name}>
-      {dessertItems.length !== 0 && isInCart ? (
-        <div className="relative flex flex-col">
-          <img src={mobile} alt="Waffle with Berries" className="rounded-md" />
-          <div className="absolute -bottom-5 font-redHat600 text-sm bg-red left-0 right-0 w-[10rem] mx-auto px-6 py-[10px] rounded-full flex justify-between items-center cursor-pointer lg:px-4 lg:py-[8px]">
-            <button>
+      <article className="relative flex flex-col mt-6 rounded-xl">
+        <img
+          src={mobile}
+          alt="Waffle with Berries"
+          className={`rounded-xl ${
+            dessertItems.length !== 0 && isInCart && "border-2 border-red"
+          }`}
+        />
+
+        {dessertItems.length !== 0 && isInCart ? (
+          <div className="absolute -bottom-5 font-redHat600 text-sm bg-red left-0 right-0 w-[10rem] mx-auto px-6 py-[12px] rounded-full flex justify-between items-center cursor-pointer">
+            <button onClick={() => updateCartItemQuantity(name, -1)}>
               <img
                 src={decrementQuantityIcon}
                 alt="decrement quantity icon"
@@ -35,9 +43,14 @@ const ProductItem = ({ dessert }) => {
               />
             </button>
 
-            <span className="text-rose50">4</span>
+            <span className="text-rose50">
+              {
+                dessertItems.find((cartItems) => cartItems.name === name)
+                  ?.quantity
+              }
+            </span>
 
-            <button>
+            <button onClick={() => updateCartItemQuantity(name, 1)}>
               <img
                 src={incrementQuantityIcon}
                 alt="increment quantity icon"
@@ -45,23 +58,20 @@ const ProductItem = ({ dessert }) => {
               />
             </button>
           </div>
-        </div>
-      ) : (
-        <button
-          className="relative flex flex-col mt-6"
-          onClick={() => addItemToCart(name)}
-        >
-          <img src={mobile} alt="Waffle with Berries" className="rounded-md" />
-          <div className="absolute -bottom-5 font-redHat600 text-sm text-rose900 bg-rose50 left-0 right-0 w-[10rem] mx-auto px-6 py-[10px] rounded-full justify-between flex border border-rose300 hover:border-red hover:text-red lg:px-4 lg:py-[8px]">
-            <img src={addToCart} alt="icon-add-to-cart" className="mr-2" />
+        ) : (
+          <button
+            className="absolute -bottom-5 font-redHat600 text-sm text-rose900 bg-rose50 left-0 right-0 w-[10rem] mx-auto px-6 py-[10px] rounded-full justify-between flex border border-rose300 hover:border-red hover:text-red"
+            onClick={() => addItemToCart(name)}
+          >
+            <img src={addToCart} alt="icon-add-to-cart" />
             Add to Cart
-          </div>
-        </button>
-      )}
+          </button>
+        )}
+      </article>
 
       <div className="leading-7 mt-6">
         <p className="text-rose400">{category}</p>
-        <h3 className="text-rose900 font-redHat600">{name}</h3>
+        <h3 className="text-rose900 font-redHat600">{name}</h3>4
         <p className="text-red font-redHat600">${price.toFixed(2)}</p>
       </div>
     </li>

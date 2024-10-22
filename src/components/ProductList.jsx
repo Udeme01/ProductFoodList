@@ -1,14 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { dessertsData } from "../http";
 
 import Header from "./Header";
 import Cart from "./Cart";
 import ProductItem from "./ProductItem";
+import { DessertCartContext } from "./store/dessert-cart-context";
 
 const ProductList = () => {
   const [dessertLists, setDessertLists] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(false);
+
+  const { dessertItems } = useContext(DessertCartContext);
+
+  const cartQuantity = dessertItems.reduce(
+    (acc, dessertItem) => acc + dessertItem.quantity,
+    0
+  );
 
   useEffect(() => {
     const fetchDesserts = async () => {
@@ -50,7 +58,7 @@ const ProductList = () => {
             </ul>
           )}
         </section>
-        <Cart title={`Your Cart (${0})`} />
+        <Cart title={`Your Cart (${cartQuantity})`} />
       </section>
     </main>
   );

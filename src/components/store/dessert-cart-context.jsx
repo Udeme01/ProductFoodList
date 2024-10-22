@@ -42,6 +42,31 @@ const dessertCartReducer = (state, action) => {
       dessertItems: updatedItems,
     };
   }
+
+  if (action.type === "UPDATE_ITEM") {
+    const updatedItems = [...state.dessertItems];
+
+    const updatedItemIndex = updatedItems.findIndex(
+      (cartItem) => cartItem.name === action.payload.productName
+    );
+
+    const updatedItem = {
+      ...updatedItems[updatedItemIndex],
+    };
+
+    updatedItem.quantity += action.payload.amount;
+
+    if (updatedItem.quantity <= 0) {
+      updatedItems.splice(updatedItemIndex, 1);
+    } else {
+      updatedItems[updatedItemIndex] = updatedItem;
+    }
+    return {
+      ...state,
+      dessertItems: updatedItems,
+    };
+  }
+  return state;
 };
 
 export const DessertCartContextProvider = ({ children }) => {
@@ -73,19 +98,22 @@ export const DessertCartContextProvider = ({ children }) => {
     }
   };
 
-  const handleUpdateCartItemQuantity = (productId, amount) => {
+  const handleUpdateCartItemQuantity = (productName, amount) => {
     dessertCartDispatch({
       type: "UPDATE_ITEM",
       payload: {
-        productId,
+        productName,
         amount,
       },
     });
   };
 
+  const handleRemoveCartItem = (item) => {};
+
   const ctxValue = {
     dessertItems: dessertCartState.dessertItems,
     addItemToCart: handleAddItemToCart,
+    removeItemFromCart: handleRemoveCartItem,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
   };
 
@@ -95,14 +123,6 @@ export const DessertCartContextProvider = ({ children }) => {
     </DessertCartContext.Provider>
   );
 };
-
-// const useCart = () => {
-//   const context = useContext(DessertCartContext);
-//   if (!context) {
-//     throw new Error("useCart ust be used within a CartProvider");
-//   }
-//   return context;
-// };
 
 DessertCartContextProvider.propTypes = {
   children: PropTypes.node,
