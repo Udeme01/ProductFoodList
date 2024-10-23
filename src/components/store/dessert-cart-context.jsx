@@ -66,6 +66,16 @@ const dessertCartReducer = (state, action) => {
       dessertItems: updatedItems,
     };
   }
+
+  if (action.type === "REMOVE_CART_ITEM") {
+    return {
+      ...state.dessertItems,
+      dessertItems: state.dessertItems.filter(
+        (dessertItem) => dessertItem.name !== action.payload
+      ),
+    };
+  }
+
   return state;
 };
 
@@ -108,7 +118,13 @@ export const DessertCartContextProvider = ({ children }) => {
     });
   };
 
-  const handleRemoveCartItem = (item) => {};
+  const handleRemoveCartItem = (name) => {
+    console.log("removing item from cart");
+    dessertCartDispatch({
+      type: "REMOVE_CART_ITEM",
+      payload: name,
+    });
+  };
 
   const ctxValue = {
     dessertItems: dessertCartState.dessertItems,

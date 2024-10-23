@@ -1,6 +1,13 @@
+import { useContext } from "react";
+
 import removeItemIcon from "/assets/images/icon-remove-item.svg";
+import PropTypes from "prop-types";
+import { DessertCartContext } from "./store/dessert-cart-context";
 
 const CartList = ({ name, price, quantity }) => {
+  const { dessertItems, removeItemFromCart } = useContext(DessertCartContext);
+  console.log(dessertItems);
+
   return (
     <li className="flex items-center justify-between border-b border-b-rose100 pb-4 mb-5">
       <div>
@@ -19,7 +26,7 @@ const CartList = ({ name, price, quantity }) => {
         </span>
       </div>
 
-      <button>
+      <button onClick={() => removeItemFromCart(name)}>
         <img
           src={removeItemIcon}
           alt="remove item icon"
@@ -28,6 +35,12 @@ const CartList = ({ name, price, quantity }) => {
       </button>
     </li>
   );
+};
+
+CartList.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.number,
+  quantity: PropTypes.number,
 };
 
 export default CartList;

@@ -10,6 +10,13 @@ import { DessertCartContext } from "./store/dessert-cart-context";
 const Cart = ({ title }) => {
   const { dessertItems } = useContext(DessertCartContext);
   console.log(dessertItems);
+
+  const totalPrice = dessertItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+
   const modal = useRef();
 
   const handleOpenOrders = () => {
@@ -42,7 +49,9 @@ const Cart = ({ title }) => {
           {/* order total && price */}
           <section className="flex items-center justify-between">
             <h5 className="text-md font-redHat600 text-rose500">Order Total</h5>
-            <p className="font-redHat700 text-rose900 text-2xl">$46.50</p>
+            <p className="font-redHat700 text-rose900 text-2xl">
+              {formattedTotalPrice}
+            </p>
           </section>
 
           {/* carbon neutral */}

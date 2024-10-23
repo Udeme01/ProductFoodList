@@ -71,7 +71,7 @@ const ProductItem = ({ dessert }) => {
 
       <div className="leading-7 mt-6">
         <p className="text-rose400">{category}</p>
-        <h3 className="text-rose900 font-redHat600">{name}</h3>4
+        <h3 className="text-rose900 font-redHat600">{name}</h3>
         <p className="text-red font-redHat600">${price.toFixed(2)}</p>
       </div>
     </li>
