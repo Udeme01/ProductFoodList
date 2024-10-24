@@ -30,7 +30,7 @@ const ProductItem = ({ dessert }) => {
   return (
     <li key={name}>
       <article className="relative flex flex-col mt-6 rounded-xl">
-        <div className="border rounded-xl">
+        <div className="rounded-xl">
           <img
             src={mobile}
             alt="Waffle with Berries"
