@@ -8,6 +8,7 @@ export const DessertCartContext = createContext({
   addItemToCart: () => {},
   removeItemFromCart: () => {},
   updateCartItemQuantity: () => {},
+  clearCart: () => {},
 });
 
 // reducer function...

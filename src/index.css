@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+#modal {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* animation: fade-slide-in-from-top 0.3s ease-in-out; */
+}
+
+#modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

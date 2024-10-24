@@ -23,7 +23,7 @@ const Cart = ({ title }) => {
     modal.current.open();
   };
 
-  let modalActions = <Button>Start New Order</Button>;
+  let modalActions = <Button>Close</Button>;
 
   return (
     <section className="bg-white rounded-md p-6 mt-10 flex flex-col gap-8 h-fit w-full lg:w-full lg:mt-0 xl:max-w-md">

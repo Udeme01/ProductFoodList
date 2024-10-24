@@ -46,33 +46,6 @@ const OrderConfirm = ({ title, modalOpen }) => {
                 modalOpen={modalOpen}
                 thumbnail={thumbnail}
               />
-              // <li key={`${dessertItem.name}-${dessertItem.category}`}>
-              //   <div className="flex items-center justify-center gap-3">
-              //     <img src={tiramisu} className="rounded-lg w-12" />
-              //     <div>
-              //       <h1 className="text-rose500 font-redHat700 text-sm leading-6">
-              //         {dessertItem.name}
-              //       </h1>
-
-              //       <span className="flex gap-4">
-              //         <h4 className="text-red font-redHat600">
-              //           {dessertItem.quantity}x
-              //         </h4>
-              //         <p className="flex gap-2">
-              //           <span className="text-rose300">
-              //             @${dessertItem.price.toFixed(2)}
-              //           </span>
-              //         </p>
-              //       </span>
-              //     </div>
-              //   </div>
-
-              //   <div>
-              //     <span className="text-rose500 font-redHat700">
-              //       ${(dessertItem.price * dessertItem.quantity).toFixed(2)}
-              //     </span>
-              //   </div>
-              // </li>
             );
           })}
         </ul>

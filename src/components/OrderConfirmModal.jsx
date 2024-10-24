@@ -19,7 +19,11 @@ const OrderConfirmModal = forwardRef(function OrderConfirmModal(
   });
 
   return createPortal(
-    <dialog ref={dialog} className="rounded-xl py-8 px-6 bg-white w-full">
+    <dialog
+      id="modal"
+      ref={dialog}
+      className={`w-full h-[30rem] py-8 px-6 mx-auto sm:w-[35rem]`}
+    >
       <OrderConfirm modalOpen={open} title="Order Confirmed" />
       <form method="dialog">{actions}</form>
     </dialog>,
