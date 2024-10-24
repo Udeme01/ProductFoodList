@@ -15,23 +15,30 @@ const ProductItem = ({ dessert }) => {
     name,
     category,
     price,
-    image: { mobile },
+    image: { desktop, mobile, tablet },
   } = dessert;
 
   const isInCart = dessertItems.some(
     (productItem) => productItem.name === name
   );
 
+  // const isDesktop = useMediaQuery(
+  //   "(min-width: 1300px) and (max-width: 2400px)"
+  // );
+  // const isTablet = useMediaQuery("(min-width: 600px) and (max-width: 1299px)");
+
   return (
     <li key={name}>
       <article className="relative flex flex-col mt-6 rounded-xl">
-        <img
-          src={mobile}
-          alt="Waffle with Berries"
-          className={`rounded-xl ${
-            dessertItems.length !== 0 && isInCart && "border-2 border-red"
-          }`}
-        />
+        <div className="border rounded-xl">
+          <img
+            src={mobile}
+            alt="Waffle with Berries"
+            className={`rounded-xl ${
+              dessertItems.length !== 0 && isInCart && "border-2 border-red"
+            }`}
+          />
+        </div>
 
         {dessertItems.length !== 0 && isInCart ? (
           <div className="absolute -bottom-5 font-redHat600 text-sm bg-red left-0 right-0 w-[10rem] mx-auto px-6 py-[12px] rounded-full flex justify-between items-center cursor-pointer">

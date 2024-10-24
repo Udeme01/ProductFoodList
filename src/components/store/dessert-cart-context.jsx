@@ -77,6 +77,13 @@ const dessertCartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "CLEAR_CART") {
+    return {
+      ...state.dessertItems,
+      dessertItems: [],
+    };
+  }
+
   return state;
 };
 
@@ -127,11 +134,18 @@ export const DessertCartContextProvider = ({ children }) => {
     });
   };
 
+  const handleClearCart = () => {
+    dessertCartDispatch({
+      type: "CLEAR_CART",
+    });
+  };
+
   const ctxValue = {
     dessertItems: dessertCartState.dessertItems,
     addItemToCart: handleAddItemToCart,
     removeItemFromCart: handleRemoveCartItem,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
+    clearCart: handleClearCart,
   };
 
   return (
