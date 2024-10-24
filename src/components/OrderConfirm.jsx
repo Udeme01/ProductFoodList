@@ -1,11 +1,25 @@
+import { useContext } from "react";
+
 import PropTypes from "prop-types";
 import orderConfirmIcon from "/assets/images/icon-order-confirmed.svg";
 
-import tiramisu from "/assets/images/image-tiramisu-thumbnail.jpg";
+// import tiramisu from "/assets/images/image-tiramisu-thumbnail.jpg";
 
-const OrderConfirm = ({ title }) => {
+import { DessertCartContext } from "./store/dessert-cart-context";
+import CartList from "./CartList";
+
+const OrderConfirm = ({ title, modalOpen }) => {
+  const { dessertItems } = useContext(DessertCartContext);
+  console.log(dessertItems);
+
+  const totalPrice = dessertItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+
   return (
-    <div>
+    <>
       <div className="leading-10">
         <img
           src={orderConfirmIcon}
@@ -17,42 +31,67 @@ const OrderConfirm = ({ title }) => {
           We hope you enjoy your food!
         </p>
       </div>
-      <section className="bg-rose50 my-6 p-6">
+      <section className="bg-rose50 my-6 p-1 w-full">
         {/* item 1 */}
-        <div className="flex items-center justify-between border-b border-b-rose100 pb-4 mb-5">
-          <div className="flex items-center justify-center gap-3">
-            <img src={tiramisu} className="rounded-lg w-12" />
-            <div>
-              <h1 className="text-rose500 font-redHat700 text-sm leading-6">
-                Classic Tiramisu
-              </h1>
+        <ul className="flex items-center justify-between border-b border-b-rose100 pb-4 mb-5 flex-col">
+          {dessertItems.map((dessertItem) => {
+            const { thumbnail } = dessertItem.image;
+            console.log(thumbnail);
+            return (
+              <CartList
+                key={`${dessertItem.name}-${dessertItem.category}`}
+                name={dessertItem.name}
+                price={dessertItem.price}
+                quantity={dessertItem.quantity}
+                modalOpen={modalOpen}
+                thumbnail={thumbnail}
+              />
+              // <li key={`${dessertItem.name}-${dessertItem.category}`}>
+              //   <div className="flex items-center justify-center gap-3">
+              //     <img src={tiramisu} className="rounded-lg w-12" />
+              //     <div>
+              //       <h1 className="text-rose500 font-redHat700 text-sm leading-6">
+              //         {dessertItem.name}
+              //       </h1>
 
-              <span className="flex gap-4">
-                <h4 className="text-red font-redHat600">1x</h4>
-                <p className="flex gap-2">
-                  <span className="text-rose300">@$5.50</span>
-                </p>
-              </span>
-            </div>
-          </div>
+              //       <span className="flex gap-4">
+              //         <h4 className="text-red font-redHat600">
+              //           {dessertItem.quantity}x
+              //         </h4>
+              //         <p className="flex gap-2">
+              //           <span className="text-rose300">
+              //             @${dessertItem.price.toFixed(2)}
+              //           </span>
+              //         </p>
+              //       </span>
+              //     </div>
+              //   </div>
 
-          <div>
-            <span className="text-rose500 font-redHat700">$5.50</span>
-          </div>
-        </div>
+              //   <div>
+              //     <span className="text-rose500 font-redHat700">
+              //       ${(dessertItem.price * dessertItem.quantity).toFixed(2)}
+              //     </span>
+              //   </div>
+              // </li>
+            );
+          })}
+        </ul>
 
         {/* order total && price */}
         <section className="flex items-center justify-between">
           <h5 className="text-md font-redHat600 text-rose500">Order Total</h5>
-          <p className="font-redHat700 text-rose900 text-2xl">$46.50</p>
+          <p className="font-redHat700 text-rose900 text-2xl">
+            {formattedTotalPrice}
+          </p>
         </section>
       </section>
-    </div>
+    </>
   );
 };
 
 OrderConfirm.propTypes = {
   title: PropTypes.string,
+  modalOpen: PropTypes.func,
 };
 
 export default OrderConfirm;

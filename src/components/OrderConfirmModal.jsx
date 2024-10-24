@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import OrderConfirm from "./OrderConfirm";
 
 const OrderConfirmModal = forwardRef(function OrderConfirmModal(
-  { actions, title },
+  { actions },
   ref
 ) {
   const dialog = useRef();
@@ -19,8 +19,8 @@ const OrderConfirmModal = forwardRef(function OrderConfirmModal(
   });
 
   return createPortal(
-    <dialog ref={dialog} className="rounded-xl py-8 px-6 bg-white">
-      <OrderConfirm title={title} />
+    <dialog ref={dialog} className="rounded-xl py-8 px-6 bg-white w-full">
+      <OrderConfirm modalOpen={open} title="Order Confirmed" />
       <form method="dialog">{actions}</form>
     </dialog>,
     document.getElementById("modal")

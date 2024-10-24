@@ -8,6 +8,7 @@ export default {
     // },
     colors: {
       red: "hsl(14, 86%, 42%)",
+      redHover: "hsl(14, 86%, 30%)",
       green: "hsl(159, 69%, 38%)",
 
       white: "hsl(0, 100%, 100%)",

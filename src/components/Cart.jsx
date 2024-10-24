@@ -1,7 +1,7 @@
 import { useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import carbonNeutralIcon from "/assets/images/icon-carbon-neutral.svg";
-// import OrderConfirmModal from "./OrderConfirmModal";
+import OrderConfirmModal from "./OrderConfirmModal";
 import { Button } from "./Button";
 import CartList from "./CartList";
 import EmptyCart from "./EmptyCart";
@@ -23,10 +23,11 @@ const Cart = ({ title }) => {
     modal.current.open();
   };
 
-  // let modalActions = <Button>Start New Order</Button>;
+  let modalActions = <Button>Start New Order</Button>;
 
   return (
-    <section className="bg-white rounded-md p-6 mt-10 flex flex-col gap-8 h-fit lg:w-full lg:mt-0 xl:max-w-md">
+    <section className="bg-white rounded-md p-6 mt-10 flex flex-col gap-8 h-fit w-full lg:w-full lg:mt-0 xl:max-w-md">
+      <OrderConfirmModal ref={modal} actions={modalActions} />
       <h1 className="text-red font-redHat700 text-xl">{title}</h1>
 
       {dessertItems.length === 0 ? (
