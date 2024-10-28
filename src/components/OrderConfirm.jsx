@@ -10,7 +10,6 @@ import CartList from "./CartList";
 
 const OrderConfirm = ({ title, modalOpen }) => {
   const { dessertItems } = useContext(DessertCartContext);
-  console.log(dessertItems);
 
   const totalPrice = dessertItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -36,7 +35,6 @@ const OrderConfirm = ({ title, modalOpen }) => {
         <ul className="flex items-center justify-between border-b border-b-rose100 pb-4 mb-5 flex-col">
           {dessertItems.map((dessertItem) => {
             const { thumbnail } = dessertItem.image;
-            console.log(thumbnail);
             return (
               <CartList
                 key={`${dessertItem.name}-${dessertItem.category}`}

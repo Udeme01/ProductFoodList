@@ -23,20 +23,17 @@ const dessertCartReducer = (state, action) => {
     const existingCartItem = updatedItems[existingCartItemIndex];
 
     if (existingCartItem) {
-      console.log("updating items");
       const updatedItem = {
         ...existingCartItem,
         quantity: existingCartItem.quantity + 1,
       };
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
-      console.log("adding new product");
       updatedItems.push({
         ...action.payload,
         quantity: 1,
       });
     }
-    console.log(updatedItems);
 
     return {
       ...state,
@@ -95,13 +92,10 @@ export const DessertCartContextProvider = ({ children }) => {
 
   const handleAddItemToCart = async (name) => {
     try {
-      console.log("Adding item to cart", name);
       const product = await dessertsData();
       const matchingProduct = product.find(
         (productItem) => productItem.name === name
       );
-
-      console.log(matchingProduct);
 
       if (matchingProduct) {
         dessertCartDispatch({
@@ -127,7 +121,6 @@ export const DessertCartContextProvider = ({ children }) => {
   };
 
   const handleRemoveCartItem = (name) => {
-    console.log("removing item from cart");
     dessertCartDispatch({
       type: "REMOVE_CART_ITEM",
       payload: name,

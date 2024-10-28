@@ -9,7 +9,6 @@ import { DessertCartContext } from "./store/dessert-cart-context";
 
 const Cart = ({ title }) => {
   const { dessertItems } = useContext(DessertCartContext);
-  console.log(dessertItems);
 
   const totalPrice = dessertItems.reduce(
     (acc, item) => acc + item.price * item.quantity,

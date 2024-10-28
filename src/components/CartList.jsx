@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import { DessertCartContext } from "./store/dessert-cart-context";
 
 const CartList = ({ name, price, quantity, modalOpen, thumbnail }) => {
-  const { dessertItems, removeItemFromCart } = useContext(DessertCartContext);
-  console.log(dessertItems);
+  const { removeItemFromCart } = useContext(DessertCartContext);
 
   return (
     <li

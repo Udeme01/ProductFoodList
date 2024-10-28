@@ -7,6 +7,8 @@ import incrementQuantityIcon from "/assets/images/icon-increment-quantity.svg";
 import { useContext } from "react";
 import { DessertCartContext } from "./store/dessert-cart-context";
 
+import useMediaQuery from "../_hooks/useMediaQuery";
+
 const ProductItem = ({ dessert }) => {
   const { addItemToCart, updateCartItemQuantity, dessertItems } =
     useContext(DessertCartContext);
@@ -22,17 +24,19 @@ const ProductItem = ({ dessert }) => {
     (productItem) => productItem.name === name
   );
 
-  // const isDesktop = useMediaQuery(
-  //   "(min-width: 1300px) and (max-width: 2400px)"
-  // );
-  // const isTablet = useMediaQuery("(min-width: 600px) and (max-width: 1299px)");
+  const isDesktop = useMediaQuery(
+    "(min-width: 1300px) and (max-width: 2400px)"
+  );
+  const isTablet = useMediaQuery("(min-width: 600px) and (max-width: 1299px)");
+
+  const imageSrc = isDesktop ? desktop : isTablet ? tablet : mobile;
 
   return (
     <li key={name}>
       <article className="relative flex flex-col mt-6 rounded-xl">
         <div className="rounded-xl">
           <img
-            src={mobile}
+            src={imageSrc}
             alt="Waffle with Berries"
             className={`rounded-xl ${
               dessertItems.length !== 0 && isInCart && "border-2 border-red"
@@ -42,11 +46,14 @@ const ProductItem = ({ dessert }) => {
 
         {dessertItems.length !== 0 && isInCart ? (
           <div className="absolute -bottom-5 font-redHat600 text-sm bg-red left-0 right-0 w-[10rem] mx-auto px-6 py-[12px] rounded-full flex justify-between items-center cursor-pointer">
-            <button onClick={() => updateCartItemQuantity(name, -1)}>
+            <button
+              onClick={() => updateCartItemQuantity(name, -1)}
+              className=""
+            >
               <img
                 src={decrementQuantityIcon}
                 alt="decrement quantity icon"
-                className="border border-white p-1 rounded-full w-[1.2rem] h-[1.2rem] flex items-center justify-center"
+                className="border border-white p-1 rounded-full w-[1.25rem] h-[1.25rem] flex items-center justify-center hover:border-2 hover:border-white"
               />
             </button>
 
@@ -61,7 +68,7 @@ const ProductItem = ({ dessert }) => {
               <img
                 src={incrementQuantityIcon}
                 alt="increment quantity icon"
-                className="border border-white p-1 rounded-full"
+                className="border border-white p-1 rounded-full w-[1.25rem] h-[1.25rem] flex items-center justify-center hover:border-2 hover:border-white"
               />
             </button>
           </div>
@@ -92,6 +99,8 @@ ProductItem.propTypes = {
     price: PropTypes.number.isRequired,
     image: PropTypes.shape({
       mobile: PropTypes.string.isRequired,
+      tablet: PropTypes.string.isRequired,
+      desktop: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
