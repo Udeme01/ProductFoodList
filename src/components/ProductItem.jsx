@@ -63,7 +63,6 @@ const ProductItem = ({ dessert }) => {
                   ?.quantity
               }
             </span>
-
             <button onClick={() => updateCartItemQuantity(name, 1)}>
               <img
                 src={incrementQuantityIcon}
